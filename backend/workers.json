@@ -1,0 +1,15 @@
+[
+  {
+    "worker_id": "3EA7715F",
+    "phone": "7760415080",
+    "name": "test",
+    "tier": "Basic",
+    "weekly_premium": 29,
+    "pin_code": "560068",
+    "status": "active",
+    "activated_at": "2026-04-14T11:25:02.800878",
+    "total_claimed": 0,
+    "claim_count": 0,
+    "payout_history": []
+  }
+]
