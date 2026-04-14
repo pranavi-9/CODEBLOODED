@@ -1,3 +1,6 @@
-venv/
+node_modules/
 __pycache__/
+*.pyc
+workers.json
+zenvest.db
 .DS_Store
