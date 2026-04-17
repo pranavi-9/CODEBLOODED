@@ -8,6 +8,144 @@
 > Persona: Q-Commerce Delivery Partners (Zepto / Blinkit)
 
 ---
+## Pitch Deck 
+[View Pitch Deck] 
+
+
+## How to Run Locally
+
+### Prerequisites
+Make sure you have these installed:
+- Python 3.10 or higher
+- Node.js 18 or higher
+- npm
+
+---
+
+### Step 1 — Clone the repository
+
+```bash
+git clone https://github.com/pranavi-9/CODEBLOODED.git
+cd CODEBLOODED
+```
+
+### Step 2 — Set up the backend
+
+```bash
+cd backend
+pip install fastapi uvicorn xgboost scikit-learn pandas numpy httpx apscheduler pydantic
+```
+
+### Step 3 — Train the ML model
+
+```bash
+cd ml
+python generate_data.py
+cd ..
+python ml/train_model.py
+```
+
+You should see:
+Generated 1000 rows → training_data.csv
+MAE on test set: ~0.02
+Model saved → backend/ml/model.pkl
+
+### Step 4 — Run the backend
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+You should see:
+✓ Claims engine router loaded
+✓ XGBoost premium model loaded successfully
+INFO: Uvicorn running on http://127.0.0.1:8000
+
+The API docs are available at: `http://localhost:8000/docs`
+
+### Step 5 — Set up and run the frontend
+
+Open a **new terminal**:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The app will be available at: `http://localhost:5173`
+
+### Step 6 — Use the application
+
+1. Open `http://localhost:5173` in your browser
+2. Register as a delivery partner (Screen 1 → 2 → 3)
+   - Use pin code `560034` for Koramangala, Bengaluru (high risk zone demo)
+3. Activate your policy — you will land on the Policy Dashboard
+4. Click **"⚡ Simulate Dead Zone Payout (Demo)"** to trigger a live claim
+5. Click **"Admin ↗"** to view the insurer dashboard with loss ratios and fraud analytics
+
+### Step 7 — Test the ML premium endpoint
+
+Visit `http://localhost:8000/docs`, open `POST /calculate-premium` and try:
+
+```json
+{
+  "worker_id": "W001",
+  "zone": "koramangala",
+  "tier": "standard",
+  "month": 7,
+  "past_claims": 1,
+  "fraud_flag": 0,
+  "hours_per_day": 8.0,
+  "sensitivity_index": 0.7
+}
+```
+
+---
+
+### Project Structure
+CODEBLOODED/
+├── backend/
+│   ├── main.py                  # Main FastAPI app
+│   ├── claims_engine.py         # Claims processing + Razorpay mock
+│   ├── fraud_detection.py       # Advanced GPS spoofing + ring detection
+│   ├── workers.json             # Worker policy database
+│   ├── zenvest.db               # SQLite trigger + claims database
+│   ├── ml/
+│   │   ├── generate_data.py     # Synthetic training data generator
+│   │   ├── train_model.py       # XGBoost model trainer
+│   │   ├── model.pkl            # Trained model (generated)
+│   │   └── training_data.csv    # Training data (generated)
+│   └── trigger_pipeline/
+│       ├── init.py
+│       ├── trigger_engine.py    # 5 parametric trigger evaluators
+│       ├── routes.py            # Trigger API routes
+│       └── poller.py            # 5-minute polling scheduler
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx              # Main app with step routing
+│   │   ├── screens/
+│   │   │   ├── Screen1BasicDetails.jsx
+│   │   │   ├── Screen2ZoneSetup.jsx
+│   │   │   ├── Screen3Quote.jsx
+│   │   │   ├── PolicyDashboard.jsx   # Worker dashboard
+│   │   │   └── AdminDashboard.jsx    # Insurer dashboard
+│   │   └── App.css
+│   └── package.json
+└── README.md
+
+---
+
+### Supported Pin Codes for Demo
+
+| Pin Code | Zone | Risk Level |
+|----------|------|-----------|
+| 560034 | Koramangala, Bengaluru | High |
+| 560095 | Indiranagar, Bengaluru | Low |
+| 600042 | Velachery, Chennai | High |
+| 400053 | Andheri West, Mumbai | High |
+| 110075 | Dwarka, Delhi | Medium |
+| 500032 | Kondapur, Hyderabad | Low |
 
 ## Table of Contents
 1. [Problem Context](#1-problem-context)
@@ -477,7 +615,7 @@ We do not require continuous GPS pings. We require GPS confirmation at **trigger
 
 ## 12. Development Plan
 
-### Phase 1 (March 4–20): Ideation & Foundation ✅
+### Phase 1 (March 4–20): Ideation & Foundation 
 - Defined persona, scenarios, and workflow
 - Designed weekly premium model and trigger architecture
 - Invented Dead Zone detection and Earnings Gap Protection feature
@@ -521,4 +659,4 @@ Zenvest is the only insurance product designed around how Q-commerce delivery wo
 
 ---
 
-*Guidewire DEVTrails 2026 | Phase 1 Submission*
+*Guidewire DEVTrails 2026*
