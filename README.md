@@ -102,40 +102,39 @@ Visit `http://localhost:8000/docs`, open `POST /calculate-premium` and try:
 ```
 
 ---
-
 ### Project Structure
+
+```
 CODEBLOODED/
 ├── backend/
-│   ├── main.py                  # Main FastAPI app
-│   ├── claims_engine.py         # Claims processing + Razorpay mock
-│   ├── fraud_detection.py       # Advanced GPS spoofing + ring detection
-│   ├── workers.json             # Worker policy database
-│   ├── zenvest.db               # SQLite trigger + claims database
+│   ├── main.py                 # Main FastAPI app
+│   ├── claims_engine.py        # Claims processing + Razorpay mock
+│   ├── fraud_detection.py      # Advanced GPS spoofing + ring detection
+│   ├── workers.json            # Worker policy database
+│   ├── zenvest.db              # SQLite trigger + claims database
 │   ├── ml/
-│   │   ├── generate_data.py     # Synthetic training data generator
-│   │   ├── train_model.py       # XGBoost model trainer
-│   │   ├── model.pkl            # Trained model (generated)
-│   │   └── training_data.csv    # Training data (generated)
+│   │   ├── generate_data.py    # Synthetic training data generator
+│   │   ├── train_model.py      # XGBoost model trainer
+│   │   ├── model.pkl           # Trained model
+│   │   └── training_data.csv   # Training data
 │   └── trigger_pipeline/
-│       ├── init.py
-│       ├── trigger_engine.py    # 5 parametric trigger evaluators
-│       ├── routes.py            # Trigger API routes
-│       └── poller.py            # 5-minute polling scheduler
+│       ├── __init__.py
+│       ├── trigger_engine.py   # 5 parametric trigger evaluators
+│       ├── routes.py           # Trigger API routes
+│       └── poller.py           # 5-min polling scheduler
 ├── frontend/
-│   ├── src/
-│   │   ├── App.jsx              # Main app with step routing
-│   │   ├── screens/
-│   │   │   ├── Screen1BasicDetails.jsx
-│   │   │   ├── Screen2ZoneSetup.jsx
-│   │   │   ├── Screen3Quote.jsx
-│   │   │   ├── PolicyDashboard.jsx   # Worker dashboard
-│   │   │   └── AdminDashboard.jsx    # Insurer dashboard
-│   │   └── App.css
-│   └── package.json
+│   └── src/
+│       ├── App.jsx             # Main app with step routing
+│       ├── screens/
+│       │   ├── Screen1BasicDetails.jsx
+│       │   ├── Screen2ZoneSetup.jsx
+│       │   ├── Screen3Quote.jsx
+│       │   ├── PolicyDashboard.jsx
+│       │   └── AdminDashboard.jsx
+│       └── App.css
+├── package.json
 └── README.md
-
----
-
+```
 ### Supported Pin Codes for Demo
 
 | Pin Code | Zone | Risk Level |
