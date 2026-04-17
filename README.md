@@ -9,7 +9,7 @@
 
 ---
 ## Pitch Deck 
-[View Pitch Deck] 
+[View Pitch Deck] https://drive.google.com/file/d/1M8G9b1JT0uH7QpemEWsiJz2AWfw4xjjZ/view?usp=sharing
 
 
 ## How to Run Locally
